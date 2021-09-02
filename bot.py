@@ -1,3 +1,6 @@
+import Initialization
+from Initalization import Initials
+
 import discord
 from discord.ext import commands
 from discord.ext import tasks
@@ -47,4 +50,5 @@ async def on_ready():
         time.sleep(1.5) # Normally, for an intialized message we're adding a time.sleep(1.5)
         print("[i] Succesfully booted and loaded the custom status!")
 
-bot.run("ODgxNjQyNTUxNDExNjM4MzEy.YSvznA.-uo96qD0sXrekA2mZ9rh8g4QQhw")
+cfg = Initials()
+bot.run(cfg.token)
