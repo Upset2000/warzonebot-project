@@ -53,14 +53,4 @@ async def on_ready():
         time.sleep(1.5) # Normally, for an intialized message we're adding a time.sleep(1.5)
         print("[i] Succesfully booted and loaded the custom status!")
 
-@bot.command(pass_context=True)
-async def meme(ctx):
-        embed = discord.Embed(title="", description="")
-
-        async with aiohttp.ClientSession() as cs:
-                async with cs.get('https://www.reddit.com/r/dankmemes/new.json?sort=hot') as r:
-                        res = await r.json()
-                        embed.set_image(url=res['data']['children'] [random.randint(0, 25)]['data']['url'])
-                        await ctx.send(embed=embed)
-
 bot.run("ODgxNjQyNTUxNDExNjM4MzEy.YSvznA.-uo96qD0sXrekA2mZ9rh8g4QQhw")
