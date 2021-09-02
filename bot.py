@@ -6,12 +6,6 @@ import time
 from time import sleep
 
 import datetime
-import random
-import aiohttp
-
-# URL Assets (Those are used especially on embeds to increase the design of the bot)
-
-url_squarewarzone = "https://media.discordapp.net/attachments/882624940245921792/882625436469825587/warzonelogo_square.jpg?width=473&height=473"
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix='%', 
