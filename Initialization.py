@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """Initializations.py | A private configuration file,
 which it's working as a ''local package'' for the bot,
 this file will never be shared on any GitHub account
@@ -28,3 +29,7 @@ class BotInformations():
         "owner_id": "852822464022183949", # Optional uses
         "owner_usertag": "Upset#6969", # Informative use
     }
+=======
+class Intials():
+  token = "ODgxNjQyNTUxNDExNjM4MzEy.YSvznA.RlfNH-pNyPvDzooWyQAcdMZZTVY"
+>>>>>>> 27e79b1627aff0a2a43aacc0b89cc3b655676a97
