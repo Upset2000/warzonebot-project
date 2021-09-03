@@ -1,3 +1,6 @@
+import Initialization
+from Initialization import BotInformations
+
 import discord
 from discord.ext import commands
 from discord.ext import tasks
@@ -24,7 +27,13 @@ def get_prefix(bot, message):
 # Below cogs represents our folder our cogs are in. Following is the file name. So 'example.py' in cogs.
 # Would be example.example [folder.file (THE EXTENSION'S OPTIONAL)]
 
-intial_extensions = []
+intial_extensions = ['Cogs.moderation']
+
+# Here we load our extensions(cogs) listed above in [initial_extensions].
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        bot.load_extension(extension)
+
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix=get_prefix, 
@@ -33,11 +42,6 @@ bot = commands.Bot(command_prefix=get_prefix,
                    description='A custom Discord bot for Warzone.')
 
 bot.remove_command('help')
-
-# Here we load our extensions(cogs) listed above in [initial_extensions].
-if __name__ == '__main__':
-    for extension in initial_extensions:
-        bot.load_extension(extension)
 
 @bot.event()
 async def on_ready():
@@ -73,4 +77,5 @@ async def on_ready():
 
 # End-line area (Where the bot runs by using its token)
 
-bot.run(None, bot=True, reconnect=True)
+cfg = BotInformations()
+bot.run(cfg.private["token"], bot=True, reconnect=True)
