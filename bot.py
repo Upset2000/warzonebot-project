@@ -1,6 +1,3 @@
-import Initialization
-from Initalization import Initials
-
 import discord
 from discord.ext import commands
 from discord.ext import tasks
@@ -10,15 +7,39 @@ from time import sleep
 
 import datetime
 
+def get_prefix(bot, message):
+        """A callable Prefix for our bot. This could be edited to allow per server prefixes."""
+
+        # Notice how you can use spaces in prefixes. Try to keep them simple though.
+        prefixes = ['%', "war!", "play!", '$']
+
+        # Check to see if we are outside of a guild. e.g DM's etc.
+        if not message.guild:
+                # Only allow ? to be used in DMs
+                return '?'
+        
+        # If we are in a guild, we allow for the user to mention us or use any of the prefixes in our list.
+        return commands.when_mentioned_or(*prefixes)(bot, message)
+
+# Below cogs represents our folder our cogs are in. Following is the file name. So 'example.py' in cogs.
+# Would be example.example [folder.file (THE EXTENSION'S OPTIONAL)]
+
+intial_extensions = []
+
 intents = discord.Intents.default()
-bot = commands.Bot(command_prefix='%', 
+bot = commands.Bot(command_prefix=get_prefix, 
                    intents=intents, 
                    case_insensitive=True,
                    description='A custom Discord bot for Warzone.')
 
 bot.remove_command('help')
 
-@bot.event
+# Here we load our extensions(cogs) listed above in [initial_extensions].
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        bot.load_extension(extension)
+
+@bot.event()
 async def on_ready():
         """The on_ready callback, where the magic goes on!
         The on_ready function is an asynchronous function where
@@ -50,5 +71,6 @@ async def on_ready():
         time.sleep(1.5) # Normally, for an intialized message we're adding a time.sleep(1.5)
         print("[i] Succesfully booted and loaded the custom status!")
 
-cfg = Initials()
-bot.run(cfg.token)
+# End-line area (Where the bot runs by using its token)
+
+bot.run(None, bot=True, reconnect=True)
