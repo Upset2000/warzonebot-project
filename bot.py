@@ -5,8 +5,8 @@ import discord
 from discord.ext import commands
 from discord.ext import tasks
 
-import time
-from time import sleep
+import asyncio
+from asyncio import sleep
 
 import datetime
 
@@ -27,14 +27,6 @@ def get_prefix(bot, message):
 # Below cogs represents our folder our cogs are in. Following is the file name. So 'example.py' in cogs.
 # Would be example.example [folder.file (THE EXTENSION'S OPTIONAL)]
 
-intial_extensions = ['Cogs.moderation']
-
-# Here we load our extensions(cogs) listed above in [initial_extensions].
-if __name__ == '__main__':
-    for extension in initial_extensions:
-        bot.load_extension(extension)
-
-
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix=get_prefix, 
                    intents=intents, 
@@ -43,7 +35,13 @@ bot = commands.Bot(command_prefix=get_prefix,
 
 bot.remove_command('help')
 
-@bot.event()
+cogs = ['Cogs.moderation']
+
+if __name__ == '__main__':
+    for extension in cogs:
+        bot.load_extension(extension)
+
+@bot.event
 async def on_ready():
         """The on_ready callback, where the magic goes on!
         The on_ready function is an asynchronous function where
@@ -72,10 +70,10 @@ async def on_ready():
         await bot.change_presence(activity=discord.Streaming(name='Call Of Duty: Warzone',
                                                              url='https://www.twitch.tv/winozavr'))
         
-        time.sleep(1.5) # Normally, for an intialized message we're adding a time.sleep(1.5)
+        await asyncio.sleep(1.5) # Normally, for an intialized message we're adding a time.sleep(1.5)
         print("[i] Succesfully booted and loaded the custom status!")
 
 # End-line area (Where the bot runs by using its token)
 
 cfg = BotInformations()
-bot.run(cfg.private["token"], bot=True, reconnect=True)
+bot.run(cfg.private["token"])
