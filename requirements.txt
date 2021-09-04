@@ -1,4 +1,7 @@
 git+https://github.com/Rapptz/discord.py@master
-https://trello.com/b/JdEI8XPQ/warzonebot-project
+
+trello+https://trello.com/b/JdEI8XPQ/warzonebot-project
+project+https://github.com/Upset2000/warzonebot-project
 
 discord.py==1.7.2
+discord-ext-ipc==2.1.1
