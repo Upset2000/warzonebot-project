@@ -10,6 +10,11 @@ from asyncio import sleep
 
 import datetime
 
+import colorama
+from colorama import init, Fore, Back, Style
+
+init(convert=True)
+
 def get_prefix(bot, message):
         """A callable Prefix for our bot. This could be edited to allow per server prefixes."""
 
@@ -60,18 +65,18 @@ async def on_ready():
         global username
         username = "WARZONEBOT"
 
-        print("[i] Connected to bot: {}".format(username + tag))
-        print("[i] Bot's ID: {}".format(bot.user.id))
-        print("[i] Discord.py version's: {}".format(discord.__version__))
-        print("[i] Current datetime: {}\n".format(datetime.datetime.now()))
+        print(Fore.LIGHTGREEN_EX + "[V]" + Fore.WHITE + " Connected to bot: {}".format(username + tag))
+        print(Fore.LIGHTGREEN_EX + "[V]" + Fore.WHITE + " Bot's ID: {}".format(bot.user.id))
+        print(Fore.LIGHTGREEN_EX + "[V]" + Fore.WHITE + " Discord.py version's: {}".format(discord.__version__))
+        print(Fore.LIGHTGREEN_EX + "[V]" + Fore.WHITE + " Current datetime: {}\n".format(datetime.datetime.now()))
 
         # The part where the custom status's intialized (activity, name, url)
         
         await bot.change_presence(activity=discord.Streaming(name='Call Of Duty: Warzone',
                                                              url='https://www.twitch.tv/winozavr'))
         
-        await asyncio.sleep(1.5) # Normally, for an intialized message we're adding a time.sleep(1.5)
-        print("[i] Succesfully booted and loaded the custom status!")
+        await asyncio.sleep(1.5) # Normally, for an intialized message we're adding a await asyncio.sleep()
+        print(Fore.LIGHTGREEN_EX + "[V]" + Fore.WHITE + " Succesfully booted and loaded the custom status!")
 
 # End-line area (Where the bot runs by using its token)
 
